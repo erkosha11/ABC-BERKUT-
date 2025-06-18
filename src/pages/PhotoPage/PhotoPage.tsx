@@ -1,5 +1,5 @@
-import { Photo } from 'features/Photo'
+import { PhotoDetails } from 'features/PhotoDetails'
 
 export const PhotoPage = () => {
-  return <Photo />
+  return <PhotoDetails />
 }

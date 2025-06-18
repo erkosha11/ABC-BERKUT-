@@ -3,8 +3,15 @@
   background-position: center;
   height: 700px;
 
-  div {
+  .containers {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .title {
       display: flex;
@@ -28,6 +35,7 @@
 
         .info {
           display: flex;
+          flex-direction: column;
 
           .name {
             font-size: 30px;
@@ -99,5 +107,46 @@
     font-size: 18px;
     text-align: center;
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 769px) {
+  .photo {
+    background-image: none;
+  }
+
+  .buttonText {
+    display: none;
+  }
+
+  .favoriteBtn,
+  .downloadBtn {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .favoriteBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .downloadBtn {
+    padding: 12px 12px !important;
+  }
+
+  .image {
+    width: 335px !important;
+    height: 227px !important;
+    object-fit: cover;
+  }
+
+  .info {
+    color: #000;
+
+    .name {
+      font-size: 18px !important;
+    }
+    .username {
+      font-size: 14px !important;
+    }
   }
 }

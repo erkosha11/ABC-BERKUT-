@@ -14,13 +14,13 @@ export const Header = () => {
             <li>
               <NavLink to='/' className={s.link}>
                 <Search />
-                <span>Поиск</span>
+                <span className={s.navText}>Поиск</span>
               </NavLink>
             </li>
             <li>
               <NavLink to='/favorites' className={s.link}>
-                <Heart />
-                <span>Избранное</span>
+                <Heart className={s.heart} />
+                <span className={s.navText}>Избранное</span>
               </NavLink>
             </li>
           </ul>

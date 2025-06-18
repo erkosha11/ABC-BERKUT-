@@ -1,0 +1,13 @@
+.PhotoGallery {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  .photos {
+    margin: 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

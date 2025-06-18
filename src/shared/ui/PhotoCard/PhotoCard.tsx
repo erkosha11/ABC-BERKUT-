@@ -4,20 +4,17 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import s from './PhotoCard.module.scss'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { type Photo } from 'shared/types'
 
 type Props = {
-  id?: string
-  url?: string
-  alt?: string
+  photo?: Photo
   isFavorite?: boolean
   onToggleFavorite?: () => void
   isLoading?: boolean
 }
 
 export const PhotoCard = ({
-  id,
-  url,
-  alt = '',
+  photo,
   isFavorite,
   onToggleFavorite,
   isLoading = false
@@ -26,34 +23,28 @@ export const PhotoCard = ({
 
   return (
     <div className={s.card}>
-      {isLoading || !url || !imageLoaded ? (
+      {isLoading || !photo ? (
         <Skeleton className={s.skeleton} />
       ) : (
         <>
           <img
-            src={url}
-            alt={alt}
+            src={photo.urls.regular}
+            alt={photo.alt_description}
             className={s.image}
             onLoad={() => setImageLoaded(true)}
+            style={{ display: imageLoaded ? 'block' : 'none' }}
           />
-          <div className={s.buttons}>
-            <button className={s.favoriteBtn} onClick={onToggleFavorite}>
-              <Heart className={`${s.heart} ${isFavorite ? s.active : ''}`} />
-            </button>
-            <Link to={`/photo/${id}`} className={s.viewBtn}>
-              <Search />
-            </Link>
-          </div>
+          {imageLoaded && (
+            <div className={s.buttons}>
+              <button className={s.favoriteBtn} onClick={onToggleFavorite}>
+                <Heart className={`${s.heart} ${isFavorite ? s.active : ''}`} />
+              </button>
+              <Link to={`/photo/${photo.id}`} className={s.viewBtn}>
+                <Search />
+              </Link>
+            </div>
+          )}
         </>
-      )}
-      {url && !isLoading && (
-        <img
-          src={url}
-          alt={alt}
-          className={s.hiddenImage}
-          onLoad={() => setImageLoaded(true)}
-          style={{ display: 'none' }}
-        />
       )}
     </div>
   )

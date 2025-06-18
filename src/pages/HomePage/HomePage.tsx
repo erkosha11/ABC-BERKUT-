@@ -1,11 +1,11 @@
 import { Home } from 'features/Home'
-import { Photos } from 'features/Photos'
+import { PhotoGallery } from 'features/PhotoGallery'
 
 export const HomePage = () => {
   return (
     <>
       <Home />
-      <Photos />
+      <PhotoGallery />
     </>
   )
 }

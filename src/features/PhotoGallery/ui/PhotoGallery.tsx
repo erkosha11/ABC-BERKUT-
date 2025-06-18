@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { usePhotoStore } from '../model/store'
 import { PhotoCard } from 'shared/ui'
-import s from './Photos.module.scss'
+import s from './PhotoGallery.module.scss'
 
-export const Photos = () => {
+export const PhotoGallery = () => {
   const {
     photos,
     searchPhotos,
@@ -23,7 +23,7 @@ export const Photos = () => {
   const displayPhotos = searchQuery ? searchPhotos : photos
 
   return (
-    <div className='container'>
+    <div className={s.PhotoGallery}>
       <div className={s.photos}>
         {isLoading
           ? Array.from({ length: 9 }).map((_, i) => (
@@ -32,9 +32,7 @@ export const Photos = () => {
           : displayPhotos.map((photo) => (
               <PhotoCard
                 key={photo.id}
-                id={photo.id}
-                url={photo.urls.regular}
-                alt={photo.alt_description}
+                photo={photo}
                 isFavorite={favorites.includes(photo.id)}
                 onToggleFavorite={() => toggleFavorite(photo.id)}
               />

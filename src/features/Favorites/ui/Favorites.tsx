@@ -1,5 +1,5 @@
-import s from 'features/Photos/ui/Photos.module.scss'
-import { usePhotoStore } from 'features/Photos'
+import s from 'features/PhotoGallery/ui/PhotoGallery.module.scss'
+import { usePhotoStore } from 'features/PhotoGallery'
 import { PhotoCard } from 'shared/ui'
 import { useEffect } from 'react'
 
@@ -17,7 +17,7 @@ export const Favorites = () => {
   }, [fetchFavoritePhotos, favorites])
 
   return (
-    <div className='container'>
+    <div className={s.PhotoGallery}>
       <div className={s.photos}>
         {isLoading
           ? Array.from({ length: 9 }).map((_, i) => (
@@ -26,9 +26,7 @@ export const Favorites = () => {
           : favoritePhotos.map((photo) => (
               <PhotoCard
                 key={photo.id}
-                id={photo.id}
-                url={photo.urls.regular}
-                alt={photo.alt_description}
+                photo={photo}
                 isFavorite={favorites.includes(photo.id)}
                 onToggleFavorite={() => toggleFavorite(photo.id)}
               />

@@ -15,6 +15,16 @@ header {
       gap: 12px;
       color: white;
       text-decoration: none;
+
+      .heart {
+        stroke: #fff;
+      }
     }
+  }
+}
+
+@media (max-width: 769px) {
+  .navText {
+    display: none;
   }
 }

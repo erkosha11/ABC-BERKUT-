@@ -1,12 +1,6 @@
 import { getPhotoById } from 'shared/api'
 import { create } from 'zustand'
-
-type Photo = {
-  id: string
-  alt_description: string
-  urls: { full: string }
-  user: { name: string; links: { html: string } }
-}
+import { type Photo } from 'shared/types'
 
 type State = {
   photo: Photo | null
@@ -14,7 +8,7 @@ type State = {
   fetchPhoto: (id: string) => Promise<void>
 }
 
-export const usePhotoPageStore = create<State>((set) => ({
+export const usePhotoDetailsStore = create<State>((set) => ({
   photo: null,
   isLoading: false,
 

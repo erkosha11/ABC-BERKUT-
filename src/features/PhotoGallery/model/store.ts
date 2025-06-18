@@ -1,31 +1,6 @@
 import { create } from 'zustand'
 import { getRandomPhotos, searchPhotos, getPhotoById } from 'shared/api'
-
-type Photo = {
-  id: string
-  urls: {
-    small: string
-    regular: string
-    full: string
-  }
-  alt_description: string
-  user: {
-    name: string
-    username: string
-    links: {
-      html: string
-    }
-    profile_image: {
-      small: string
-      medium: string
-      large: string
-    }
-  }
-  links: {
-    download: string
-    html: string
-  }
-}
+import { type Photo } from 'shared/types'
 
 type State = {
   photos: Photo[]

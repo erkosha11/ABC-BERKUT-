@@ -64,3 +64,10 @@
     height: 100%;
   }
 }
+
+@media (max-width: 769px) {
+  .card {
+    width: 330px;
+    height: 310px;
+  }
+}

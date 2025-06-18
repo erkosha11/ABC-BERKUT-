@@ -1,6 +1,6 @@
 import { Search } from 'assets/icons'
 import s from './Home.module.scss'
-import { usePhotoStore } from 'features/Photos'
+import { usePhotoStore } from 'features/PhotoGallery'
 
 export const Home = () => {
   const { searchQuery, setSearchQuery, fetchSearchPhotos } = usePhotoStore()

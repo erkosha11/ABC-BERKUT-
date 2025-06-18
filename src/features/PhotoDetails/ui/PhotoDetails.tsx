@@ -1,65 +1,62 @@
-import { usePhotoStore } from 'features/Photos'
+import { usePhotoDetailsStore } from '../model/store'
 import { useParams } from 'react-router-dom'
 import { Download, Heart } from 'assets/icons'
 import { useEffect } from 'react'
-import s from './Photo.module.scss'
+import s from './PhotoDetails.module.scss'
+import { usePhotoStore } from 'features/PhotoGallery'
 
-export const Photo = () => {
+export const PhotoDetails = () => {
   const { id } = useParams<{ id: string }>()
-  const { currentPhoto, fetchPhotoById, isLoading, toggleFavorite, favorites } =
-    usePhotoStore()
+  const { photo, fetchPhoto, isLoading } = usePhotoDetailsStore()
+  const { toggleFavorite, favorites } = usePhotoStore()
 
   useEffect(() => {
     if (id) {
-      fetchPhotoById(id)
+      fetchPhoto(id)
     }
-  }, [id, fetchPhotoById])
+  }, [id, fetchPhoto])
 
   if (isLoading) {
     return <div className={s.loading}>Загрузка...</div>
   }
 
-  if (!currentPhoto) {
+  if (!photo) {
     return <div className={s.error}>Фотография не найдена</div>
   }
 
-  const isFavorite = favorites.includes(currentPhoto.id)
+  const isFavorite = favorites.includes(photo.id)
 
   return (
     <div className={s.photo}>
-      <div className='container'>
+      <div className={s.containers}>
         <div className={s.title}>
           <div className={s.left}>
             <img
-              src={currentPhoto.user.profile_image.small}
-              alt={currentPhoto.user.name}
+              src={photo.user.profile_image.small}
+              alt={photo.user.name}
               className={s.avatar}
             />
             <div className={s.info}>
-              <span className={s.name}>{currentPhoto.user.name}</span>
-              <span className={s.username}>@{currentPhoto.user.username}</span>
+              <span className={s.name}>{photo.user.name}</span>
+              <span className={s.username}>@{photo.user.username}</span>
             </div>
           </div>
           <div className={s.right}>
             <button
               className={s.favoriteBtn}
-              onClick={() => toggleFavorite(currentPhoto.id)}
+              onClick={() => toggleFavorite(photo.id)}
             >
               <Heart className={`${s.heart} ${isFavorite ? s.active : ''}`} />
             </button>
-            <a
-              href={currentPhoto.links.download}
-              download
-              className={s.downloadBtn}
-            >
+            <a href={photo.links.download} download className={s.downloadBtn}>
               <Download />
-              Downloand
+              <span className={s.buttonText}>Download</span>
             </a>
           </div>
         </div>
         <img
-          src={currentPhoto.urls.regular}
-          alt={currentPhoto.alt_description}
+          src={photo.urls.regular}
+          alt={photo.alt_description}
           className={s.image}
         />
       </div>
